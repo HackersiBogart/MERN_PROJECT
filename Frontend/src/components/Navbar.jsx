@@ -34,10 +34,11 @@ const Navbar = () => {
             <Button>
                 <PlusSquareIcon fontSize = {20}/>
             </Button>
-            <Button onClick={toggleColorMode}>
-                {colorMode === "light" ? <IoMoon /> : <LuSun size="20"/>}
-            </Button>
+            
         </Link>
+        <Button onClick={toggleColorMode}>
+                {colorMode === "light" ? <IoMoon /> : <LuSun size="20"/>}
+        </Button>
     </HStack>
  
     
