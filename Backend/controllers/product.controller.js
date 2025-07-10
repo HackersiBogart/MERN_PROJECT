@@ -12,16 +12,27 @@ export const getProducts = async (req, res) => {
   };
 
 export const createProduct = async (req, res) => {
-    const product = req.body;
-  
-    try {
-      const newProduct = await Product.create(product);
-      res.status(201).json({ success: true, data: newProduct });
-    } catch (error) {
-      console.error("Error creating product:", error.message);
-      res.status(500).json({ success: false, message: "Server error" });
-    }
-  };
+  console.log("Received product:", req.body); // ✅ Log the body
+
+  const product = req.body;
+
+  if (!product.name || !product.image || !product.price) {
+    console.log("Missing fields:", product);
+    return res.status(400).json({ success: false, message: "Please fill all fields" });
+  }
+
+  const newProduct = new Product(product);
+
+  try {
+    await newProduct.save();
+    res.status(201).json({ success: true, data: newProduct });
+  } catch (error) {
+    console.error("Error creating product:", error.message); // ✅ Show real error
+    res.status(500).json({ success: false, message: error.message || "Server error" });
+  }
+};
+
+
 
   export const updateProduct =  async (req, res) => {
     const { id } = req.params;
