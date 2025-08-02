@@ -26,7 +26,7 @@ const Navbar = () => {
         bgClip={"text"}   
         >
         <Link to={"/"}>
-         Product Store 🛒
+         Gilbert's Aluminum and Glassworks
          </Link>
     </Text>
     <HStack spacing={2} alignItems={"center"}>
